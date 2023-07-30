@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from login import views as login_views
+from channel_statistics import views as statistics_views
 from YT_API import views
 from django.conf import settings
 
@@ -27,5 +28,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('social-auth/', include('social_django.urls', namespace='social')),
     path("", login_views.home, name="home"),
-    path('channel_statistics/'+str(settings.YOUTUBE_CHANNEL_ID), views.channel_stats),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID), statistics_views.channel_stats),
 ]
