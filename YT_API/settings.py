@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'social_django',
     'rest_framework',
     'channel_statistics',
+    'videos',
 ]
 
 MIDDLEWARE = [

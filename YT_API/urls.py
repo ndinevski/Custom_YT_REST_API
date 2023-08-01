@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from login import views as login_views
 from channel_statistics import views as statistics_views
+from videos import views as videos_views
 from YT_API import views
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.conf import settings
@@ -31,7 +32,8 @@ urlpatterns = [
     path("", login_views.home, name="home"),
     path('channel/'+str(settings.YOUTUBE_CHANNEL_ID), statistics_views.channel_stats),
     path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/update', statistics_views.channel_stats_update),
-    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/<int:id>', statistics_views.channel_stats_id),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/<int:id>', statistics_views.channel_stats_id, name='channel statistics id'),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/videos', include('videos.urls')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
