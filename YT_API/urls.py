@@ -29,4 +29,5 @@ urlpatterns = [
     path('social-auth/', include('social_django.urls', namespace='social')),
     path("", login_views.home, name="home"),
     path('channel/'+str(settings.YOUTUBE_CHANNEL_ID), statistics_views.channel_stats),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/update', statistics_views.channel_stats_update),
 ]
