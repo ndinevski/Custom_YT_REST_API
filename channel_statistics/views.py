@@ -13,14 +13,14 @@ from .models import Statistics
 
 # GET ALL REFRESHED CHANNEL STATISTICS, IDs ordered chronologically
 @api_view(['GET'])
-def channel_stats(request):
+def channel_stats(request, format=None):
     statistics = Statistics.objects.all()
     serializer = StatsSerializer(statistics, many=True)
-    return JsonResponse({'statistics': serializer.data})
+    return Response({'statistics': serializer.data})
 
 # UPDATE CHANNEL STATISTICS AND ADD CHANNEL STATISTICS OF THE CURRENT TIME
 @api_view(['POST'])
-def channel_stats_update(request):
+def channel_stats_update(request, format=None):
     search_url = 'https://www.googleapis.com/youtube/v3/channels'
     params = {
             'part': 'statistics',
@@ -44,7 +44,7 @@ def channel_stats_update(request):
 
 # GET CHANNEL STATISTICS BY ID OR DELETE
 @api_view(['GET', 'DELETE'])
-def channel_stats_id(request, id):
+def channel_stats_id(request, id, format=None):
     try:
         statistic = Statistics.objects.get(pk=id)
     except Statistics.DoesNotExist:
