@@ -66,6 +66,7 @@ def index(request):
         video_data = {
             'title': result['snippet']['title'],
             'id': result['id'],
+            'url' : f'https://www.youtube.com/watch?v={ result["id"] }',
             'view_count': result['statistics']['viewCount'],
             'like_count': result['statistics']['likeCount'],
             'comment_count': result['statistics']['commentCount'],
@@ -77,6 +78,7 @@ def index(request):
         video_data = {
             'title': result['snippet']['title'],
             'id': result['id'],
+            'url' : f'https://www.youtube.com/watch?v={ result["id"] }',
             'view_count': result['statistics']['viewCount'],
             'like_count': result['statistics']['likeCount'],
             'comment_count': result['statistics']['commentCount'],
@@ -91,7 +93,7 @@ def index(request):
     }
 
     #return Response() - If wanted to do GET request
-    
+
     return render(request, 'videos/index.html', context)
 
 
