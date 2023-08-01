@@ -42,16 +42,20 @@ def channel_stats_update(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-# GET CHANNEL STATISTICS BY ID
-@api_view(['GET'])
+# GET CHANNEL STATISTICS BY ID OR DELETE
+@api_view(['GET', 'DELETE'])
 def channel_stats_id(request, id):
     try:
         statistic = Statistics.objects.get(pk=id)
     except Statistics.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-
-    serializer = StatsSerializer(statistic)
-    return Response(serializer.data)
+    
+    if request.method == 'GET':
+        serializer = StatsSerializer(statistic)
+        return Response(serializer.data)
+    elif request.method == 'DELETE':
+        statistic.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT) 
 
 # @api_view(['GET', 'POST'])
 # def channel_stats(request):
