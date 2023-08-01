@@ -30,4 +30,6 @@ urlpatterns = [
     path("", login_views.home, name="home"),
     path('channel/'+str(settings.YOUTUBE_CHANNEL_ID), statistics_views.channel_stats),
     path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/update', statistics_views.channel_stats_update),
+    # path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/delete', statistics_views.channel_stats_delete),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/<int:id>', statistics_views.channel_stats_id),
 ]
