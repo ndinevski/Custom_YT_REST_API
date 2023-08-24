@@ -11,6 +11,8 @@ def current_statistics(handle):
         }
     r = requests.get(search_url, params=params)
 
+
+    
     subscriber_count = r.json()['items'][0]['statistics']['subscriberCount']
     view_count = r.json()['items'][0]['statistics']['viewCount']
     video_count = r.json()['items'][0]['statistics']['videoCount']

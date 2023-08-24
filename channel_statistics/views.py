@@ -49,6 +49,5 @@ def channel_stats_id(request,handle, id, format=None):
         serializer = StatsSerializer(statistic)
         return Response(serializer.data)
     elif request.method == 'DELETE':
-        # Statistics.objects.delete(pk=id)
         statistic.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 

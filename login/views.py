@@ -5,6 +5,7 @@ from django.conf import settings
 from .form import handle_form
 from YT_API import refresh
 from django.shortcuts import redirect
+import requests
 
 # Create your views here.
 def login(request):
@@ -14,8 +15,23 @@ def login(request):
 def home(request):
     if request.method == 'POST':
         form = handle_form()
-        settings.YOUTUBE_CHANNEL_ID = request.POST.get('handle')
+        channel_name = request.POST.get('handle')
+
+        search_url = 'https://youtube.googleapis.com/youtube/v3/search'
+        params = {
+                'part': 'snippet',
+                'q' : channel_name,
+                'type' : 'channel',
+                'key' : settings.YOUTUBE_DATA_API_KEY,
+            }
+        r = requests.get(search_url, params=params)
+        channel_id = r.json()['items'][0]['id']['channelId']
+        
+        settings.YOUTUBE_CHANNEL_ID = channel_id
+
         refresh.reload_urlconf()
+
         return redirect('http://localhost:8000/channel/'+settings.YOUTUBE_CHANNEL_ID)
+    
     form = handle_form()
     return render(request, 'home.html', {'form': form})

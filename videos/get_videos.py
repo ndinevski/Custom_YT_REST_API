@@ -81,7 +81,7 @@ def get_videos_by_views(handle):
     results_views = r_views.json()['items']
 
     videos_views = []
-    videos_rating = []
+
     for result in results_views:
         video_data = {
             'title': result['snippet']['title'],
