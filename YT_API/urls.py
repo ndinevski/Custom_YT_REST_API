@@ -30,9 +30,10 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('social-auth/', include('social_django.urls', namespace='social')),
     path("", login_views.home, name="home"),
-    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID), statistics_views.channel_stats),
-    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/update', statistics_views.channel_stats_update),
-    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/<int:id>', statistics_views.channel_stats_id, name='channel statistics id'),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID), statistics_views.current_channel_stats),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/historical', statistics_views.channel_stats),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/historical/update', statistics_views.channel_stats_update),
+    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/historical/<int:id>', statistics_views.channel_stats_id, name='channel statistics id'),
     path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/videos/top10', include('videos.urls')),
     path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/videos', videos_views.videos_json),
 ]
