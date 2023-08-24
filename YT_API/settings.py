@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'kronos',
     'login',
     'social_django',
     'rest_framework',
@@ -144,7 +145,7 @@ LOGOUT_REDIRECT_URL = 'login'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '18876024183-r2i0uucemubdqfc998vhr0gk4bp6r04u.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
-YOUTUBE_DATA_API_KEY = 'AIzaSyBRLiI87ReKsaBAW3IZ0FKA6RIDEmSytFM'
+YOUTUBE_DATA_API_KEY = 'AIzaSyCKMtP0wMgdyKPOmxTGIgl-JsBx0G0zdUY'
 
 YOUTUBE_CHANNEL_NAME = ''
 YOUTUBE_CHANNEL_ID = ''
