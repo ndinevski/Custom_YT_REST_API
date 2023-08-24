@@ -28,6 +28,7 @@ def home(request):
         channel_id = r.json()['items'][0]['id']['channelId']
         
         settings.YOUTUBE_CHANNEL_ID = channel_id
+        settings.YOUTUBE_CHANNEL_NAME = r.json()['items'][0]['snippet']['channelTitle']
 
         refresh.reload_urlconf()
 

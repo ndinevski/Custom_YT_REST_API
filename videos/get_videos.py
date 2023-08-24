@@ -36,6 +36,7 @@ def get_videos_by_rating(handle):
     for result in results_rating:
         video_data = {
             'title': result['snippet']['title'],
+            'channel_name' : result['snippet']['channelTitle'],
             'id': result['id'],
             'url' : f'https://www.youtube.com/watch?v={ result["id"] }',
             'view_count': result['statistics']['viewCount'],
@@ -85,6 +86,7 @@ def get_videos_by_views(handle):
     for result in results_views:
         video_data = {
             'title': result['snippet']['title'],
+            'channel_name' : result['snippet']['channelTitle'],
             'id': result['id'],
             'url' : f'https://www.youtube.com/watch?v={ result["id"] }',
             'view_count': result['statistics']['viewCount'],
