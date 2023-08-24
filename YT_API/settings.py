@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_tk&b!7j(_sok7+54=z)5c^j$o_+h+&vb$2=eh6@e=ofjw^yh^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+# DEBUG = True
+# ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -144,4 +144,4 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 YOUTUBE_DATA_API_KEY = 'AIzaSyBRLiI87ReKsaBAW3IZ0FKA6RIDEmSytFM'
 
-YOUTUBE_CHANNEL_ID = 'UCX6OQ3DkcsbYNE6H8uQQuVA'
+YOUTUBE_CHANNEL_ID = ''

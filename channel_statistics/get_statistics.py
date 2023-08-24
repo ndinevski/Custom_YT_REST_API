@@ -2,11 +2,11 @@ from django.conf import settings
 import requests
 from datetime import datetime
 
-def current_statistics():
+def current_statistics(handle):
     search_url = 'https://www.googleapis.com/youtube/v3/channels'
     params = {
             'part': 'statistics',
-            'id': settings.YOUTUBE_CHANNEL_ID,
+            'id': handle,
             'key' : settings.YOUTUBE_DATA_API_KEY,
         }
     r = requests.get(search_url, params=params)
@@ -16,7 +16,7 @@ def current_statistics():
     video_count = r.json()['items'][0]['statistics']['videoCount']
     date_time = datetime.now()
     dt_string = date_time.strftime("%d/%m/%Y %H:%M:%S")
-    channel_id = settings.YOUTUBE_CHANNEL_ID
+    channel_id = handle
 
     data= {"channel_id": channel_id,"date_and_time": dt_string , "subscriber_count": subscriber_count, "view_count": view_count, "video_count": video_count}
     return data

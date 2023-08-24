@@ -1,13 +1,14 @@
 import requests
 from django.conf import settings
 
-def get_videos_by_rating():
+# TOP 10 Videos by Rating
+def get_videos_by_rating(handle):
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
 
     params_search_rating = {
         'part': 'snippet',
-        'channelId': settings.YOUTUBE_CHANNEL_ID,
+        'channelId': handle,
         'key': settings.YOUTUBE_DATA_API_KEY,
         'maxResults': 10,
         'order': 'rating',
@@ -47,13 +48,14 @@ def get_videos_by_rating():
     
     return videos_rating
 
-def get_videos_by_views():
+# TOP 10 Videos by Views
+def get_videos_by_views(handle):
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
 
     params_search_views = {
         'part': 'snippet',
-        'channelId': settings.YOUTUBE_CHANNEL_ID,
+        'channelId': handle,
         'key': settings.YOUTUBE_DATA_API_KEY,
         'maxResults': 10,
         'order': 'viewCount',
