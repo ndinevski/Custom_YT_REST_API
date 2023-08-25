@@ -1,12 +1,8 @@
-from django.shortcuts import render
-from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.conf import settings
-import requests
 from .serializers import StatsSerializer
-from datetime import datetime
 from .models import Statistics
 from . import get_statistics
 
@@ -15,8 +11,8 @@ from . import get_statistics
 # GET CURRENT CHANNEL STATISTICS
 @api_view(['GET'])
 def current_channel_stats(request, handle, format=None):
+    settings.USER = request.user.username
     data = get_statistics.current_statistics(handle)
-    # print(request.user)
     serializer = StatsSerializer(data=data)
     if serializer.is_valid():
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -25,7 +21,7 @@ def current_channel_stats(request, handle, format=None):
 # GET ALL REFRESHED CHANNEL STATISTICS, IDs ordered chronologically
 @api_view(['GET'])
 def channel_stats(request, handle, format=None):
-    statistics = Statistics.objects.filter(channel_id=settings.YOUTUBE_CHANNEL_ID)
+    statistics = Statistics.objects.filter(channel_id=settings.YOUTUBE_CHANNEL_ID).filter(user=settings.USER)
     serializer = StatsSerializer(statistics, many=True)
     return Response({'statistics': serializer.data})
 
@@ -42,7 +38,7 @@ def channel_stats_update(request, handle, format=None):
 @api_view(['GET', 'DELETE'])
 def channel_stats_id(request,handle, id, format=None):
     try:
-        statistic = Statistics.objects.get(pk=id)
+        statistic = Statistics.objects.filter(user=settings.USER).get(pk=id)
     except Statistics.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     

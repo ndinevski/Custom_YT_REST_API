@@ -3,6 +3,7 @@ from django.conf import settings
 
 # Create your models here.
 class Statistics(models.Model):
+    user = models.CharField(max_length=100)
     channel_name = models.CharField(max_length=100)
     channel_id = models.CharField(max_length=100)
     date_and_time = models.CharField(max_length=100)
