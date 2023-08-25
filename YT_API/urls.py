@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from login import views as login_views
-from channel_statistics import views as statistics_views
 from videos import views as videos_views
+from channel_statistics import views as statistics_views
 from YT_API import views
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.conf import settings
@@ -30,10 +30,12 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('social-auth/', include('social_django.urls', namespace='social')),
     path("", login_views.home, name="home"),
-    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID), statistics_views.channel_stats),
-    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/update', statistics_views.channel_stats_update),
-    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/<int:id>', statistics_views.channel_stats_id, name='channel statistics id'),
-    path('channel/'+str(settings.YOUTUBE_CHANNEL_ID)+'/videos', include('videos.urls')),
+    path('channel/<str:handle>', statistics_views.current_channel_stats, name='current channel statistics'),
+    path('channel/<str:handle>/historical', statistics_views.channel_stats),
+    path('channel/<str:handle>/historical/update', statistics_views.channel_stats_update),
+    path('channel/<str:handle>/historical/<int:id>', statistics_views.channel_stats_id, name='channel statistics id'),
+    path('channel/<str:handle>/videos/top10', include('videos.urls')),
+    path('channel/<str:handle>/videos', videos_views.videos_json),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
