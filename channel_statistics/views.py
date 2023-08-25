@@ -16,6 +16,7 @@ from . import get_statistics
 @api_view(['GET'])
 def current_channel_stats(request, handle, format=None):
     data = get_statistics.current_statistics(handle)
+    # print(request.user)
     serializer = StatsSerializer(data=data)
     if serializer.is_valid():
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -24,7 +25,7 @@ def current_channel_stats(request, handle, format=None):
 # GET ALL REFRESHED CHANNEL STATISTICS, IDs ordered chronologically
 @api_view(['GET'])
 def channel_stats(request, handle, format=None):
-    statistics = Statistics.objects.all()
+    statistics = Statistics.objects.filter(channel_id=settings.YOUTUBE_CHANNEL_ID)
     serializer = StatsSerializer(statistics, many=True)
     return Response({'statistics': serializer.data})
 
