@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom';
+import NavBar from '../components/NavBar'
 import { ReactComponent as ArrowLeft}  from '../assets/arrow-left.svg'
 
 const Statistic = () => {
     const { id } = useParams();
     let [statistic, setStatistic] = useState(null)
+    let [data, setData] = useState('');
 
     useEffect(() => {
         async function getStatistic(){
@@ -25,18 +27,19 @@ const Statistic = () => {
         })
     }
 
+    let parentToChild = () => {
+        setData();
+    }
+
     return (
         <div className="stats">
-            <div className="stats-header">
+            <NavBar parentToChild={<div className="stats-header">
                 <h3>
                     <Link to="/statistics">  
                         <ArrowLeft />
                     </Link>
-                    <Link to="/statistics">  
-                        <button className="right" onClick={deleteStatistic}>Delete</button>
-                    </Link>
                 </h3>
-            </div>
+            </div>}/>
             <div className="center">
                 <h3 className="stats-title">{statistic?.channel_name}</h3>
                 <div>
@@ -46,6 +49,11 @@ const Statistic = () => {
                     <h4>Videos: {statistic?.video_count}</h4>
                 </div>
             </div>
+            <div>
+            <Link to="/statistics" >
+                <button className="button-5" onClick={deleteStatistic}>Delete statistic</button>
+            </Link>
+        </div>
         </div>
     )
 }

@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import NavBar from '../components/NavBar'
 
 const Statistics = () => {
     let [statistics, setStatistics] = useState([])
+    let [data, setData] = useState('');
     
     useEffect(() => {
         getStatistics()
@@ -23,13 +25,14 @@ const Statistics = () => {
         window.location.reload(false)
     }
 
+    let parentToChild = () => {
+        setData(getStatistics());
+    }
+
     return (
     <div className='stats'>
-        <div className="stats-header, app-header">
-            <h2 className="stats-title">&#x1F4C8; Historical Statistics for {statistics[0]?.channel_name}</h2>
-            <p className="stats-count">{statistics.length}</p>
-        </div>
-       
+        <NavBar parentToChild={<h2 className="stats-title">&#x1F4C8; Historical Statistics for {statistics[0]?.channel_name} <span className="stats-count">{statistics.length}</span></h2>}/>
+        
         <div className="stats-list">
             {statistics.map((statistic, index) => (
                 <div className='stats-list-item' key={index}>
