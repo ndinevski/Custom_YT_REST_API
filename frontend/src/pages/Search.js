@@ -14,9 +14,10 @@ const Search = () => {
         fetch('http://127.0.0.1:8000/search-backend', {
             method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
             }
         })
-        window.location.replace("http://localhost:8000/statistics")
+        window.location.reload(false)
     };
 
     let setChannelName = () => {

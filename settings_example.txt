@@ -100,9 +100,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'database', 
         'USER': 'postgres',
-        'PASSWORD': 'n1xx1n',
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
+        'PASSWORD': '',
+        'HOST': '', 
+        'PORT': '',
     }
 }
 
@@ -165,10 +165,10 @@ LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = '/'
 USER = ''
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '18876024183-r2i0uucemubdqfc998vhr0gk4bp6r04u.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 
-YOUTUBE_DATA_API_KEY = 'AIzaSyBvtxUP2Wqjn17K0iLtszfBtmYJ8tAdUt0'
+YOUTUBE_DATA_API_KEY = ''
 
 YOUTUBE_CHANNEL_NAME = ''
 YOUTUBE_CHANNEL_ID = ''

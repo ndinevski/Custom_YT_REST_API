@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.http import JsonResponse
 from django.conf import settings
 from .form import handle_form
@@ -11,6 +12,7 @@ import requests
 def login(request):
     return render(request, 'login.html')
 
+@ensure_csrf_cookie
 @login_required
 def search(request):
     if request.method == 'POST':
@@ -36,4 +38,5 @@ def search(request):
         return redirect('http://127.0.0.1:8000/statistics')
     
     form = handle_form()
+    # return redirect('http://127.0.0.1:8000/search')
     return render(request, 'home.html', {'form': form})

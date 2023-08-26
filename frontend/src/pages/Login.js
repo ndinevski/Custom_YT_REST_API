@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <div className="home">
         <div className='stats-header, app-header'>
-            <h2 className="stats-title-home">&#x1F4C8; YTstats</h2>
+            <h2 className="stats-title-home">&#x1F4C8; YTanalytics</h2>
         </div>
         <div>
             <div className="home-heading">
