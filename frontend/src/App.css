@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap');
 
+
+
 :root {
   --color-main: #ef5a1a;
   --color-main-lighter: #f3956c;
@@ -102,6 +104,69 @@ a {
   text-align: center;
 }
 
+.home h1 {
+  font-size: 150px;
+  color: var(--color-dark);
+  font-weight: 800;
+  padding: 50px;
+  color: var(--color-main);
+  width: 3000px;
+}
+
+.home p{
+  font-size: 20px;
+  color: var(--color-dark);
+  font-weight: 500;
+  padding: 0px;
+  color: var(--color-text)
+}
+
+.home-heading{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 160px;
+}
+
+.home-description{
+  position: relative;
+  top: 180px;
+  left:60px;
+}
+
+.home-button{
+  position: relative;
+  top: 580px;
+  left: 1px;
+  background-clip: padding-box;
+  background-color: var(--color-main);
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+  position: absolute;
+  left: 156px;
+  transform: translateX(-50%);
+}
+
 
 .button-5 {
   align-items: center;
@@ -183,6 +248,13 @@ a {
   color: var(--color-main);
   font-size: 24px;
   font-weight: 600;
+}
+
+.stats-title-home{
+  color: var(--color-main);
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 10px;
 }
 
 .stats-count{
@@ -315,7 +387,7 @@ a {
 }
 
 .darkercolor{
-  color: var(--color-main);
+  color: var(--color-dark);
 }
 
 .video-image{
@@ -494,4 +566,54 @@ a {
 
 .stats textarea::-webkit-scrollbar {
   display: none;
+}
+
+.jumbotron {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-bottom: 0;
+  background-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .jumbotron {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+  }
 }

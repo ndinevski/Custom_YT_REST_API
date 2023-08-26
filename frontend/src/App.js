@@ -9,6 +9,7 @@ import Statistics from './pages/Statistics'
 import Statistic from './pages/Statistic'
 import VideosRating from './pages/VideosRating'
 import VideosViews from './pages/VideosViews'
+import Login from './pages/Login'
 
 function App() {
   let channelName = ''
@@ -23,6 +24,8 @@ function App() {
             <Route path='/statistics/:id/delete' element={<Statistic/>} />
             <Route path='/videos/views' element={<VideosViews/>} />
             <Route path='/videos/rating' element={<VideosRating/>} />
+            <Route path='/' element={<Login/>} />
+            <Route path='/login' element={<Login/>} />
           </Routes>
         </div>
       </div>

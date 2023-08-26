@@ -18,7 +18,7 @@ def index(request, handle, format=None):
 
 
 @api_view(['GET'])
-def videos_json(request, handle, format=None):
+def videos(request, handle, format=None):
     return Response({'videos_by_views': get_videos_by_views(handle), 'videos_by_rating': get_videos_by_rating(handle)})
 
 @api_view(['GET'])

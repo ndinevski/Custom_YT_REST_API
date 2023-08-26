@@ -163,7 +163,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = '/'
 USER = ''
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '18876024183-r2i0uucemubdqfc998vhr0gk4bp6r04u.apps.googleusercontent.com'

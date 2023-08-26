@@ -12,7 +12,7 @@ def login(request):
     return render(request, 'login.html')
 
 @login_required
-def home(request):
+def search(request):
     if request.method == 'POST':
         form = handle_form()
         channel_name = request.POST.get('handle')
