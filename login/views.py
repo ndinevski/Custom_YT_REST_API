@@ -31,8 +31,9 @@ def home(request):
         settings.YOUTUBE_CHANNEL_NAME = r.json()['items'][0]['snippet']['channelTitle']
 
         refresh.reload_urlconf()
-
-        return redirect('http://localhost:8000/channel/'+settings.YOUTUBE_CHANNEL_ID)
+        settings.USER = request.user.username
+        
+        return redirect('http://127.0.0.1:8000/statistics')
     
     form = handle_form()
     return render(request, 'home.html', {'form': form})

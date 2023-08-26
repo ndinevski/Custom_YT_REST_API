@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import re_path, path, include
 from django.contrib.auth import views as auth_views
 from login import views as login_views
 from videos import views as videos_views
@@ -23,6 +23,7 @@ from channel_statistics import views as statistics_views
 from YT_API import views
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.conf import settings
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +37,8 @@ urlpatterns = [
     path('channel/<str:handle>/historical/<int:id>', statistics_views.channel_stats_id, name='channel statistics id'),
     path('channel/<str:handle>/videos/top10', include('videos.urls')),
     path('channel/<str:handle>/videos', videos_views.videos_json),
+    re_path('(^(?!(admin|login|logout|social-auth|channel)).*$)',
+    TemplateView.as_view(template_name="index.html")),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
