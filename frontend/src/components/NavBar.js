@@ -7,7 +7,7 @@ const NavBar = ({parentToChild}) => {
         <div className="stats-header, app-header">
             {parentToChild}
             <div className="navbarlist">
-                <a href="http://127.0.0.1:8000" className="navbar">Home</a>
+                <a href="http://127.0.0.1:8000/search-backend" className="navbar">Search</a>
                 <Link to="/statistics">
                     <h3 className="navbar">Statistics</h3>
                 </Link>

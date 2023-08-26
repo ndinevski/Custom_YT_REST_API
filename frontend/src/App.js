@@ -10,9 +10,11 @@ import Statistic from './pages/Statistic'
 import VideosRating from './pages/VideosRating'
 import VideosViews from './pages/VideosViews'
 import Login from './pages/Login'
+import Search from './pages/Search';
 
 function App() {
   let channelName = ''
+  let channelId = ''
 
   return (
     <Router>
@@ -24,8 +26,9 @@ function App() {
             <Route path='/statistics/:id/delete' element={<Statistic/>} />
             <Route path='/videos/views' element={<VideosViews/>} />
             <Route path='/videos/rating' element={<VideosRating/>} />
-            <Route path='/' element={<Login/>} />
+            <Route path='/search' element={<Search/>} />
             <Route path='/login' element={<Login/>} />
+            <Route path='/' element={<Login/>} />
           </Routes>
         </div>
       </div>

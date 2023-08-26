@@ -27,9 +27,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', login_views.login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('search', login_views.search, name='home'),
+    path('search-backend', login_views.search, name='home'),
     path('social-auth/', include('social_django.urls', namespace='social')),
     path('channel/<str:handle>', statistics_views.current_channel_stats, name='current channel statistics'),
     path('channel/<str:handle>/historical', statistics_views.channel_stats),
@@ -38,7 +37,7 @@ urlpatterns = [
     path('channel/<str:handle>/videos', videos_views.videos),
     path('channel/<str:handle>/videos_by_views', videos_views.videos_by_views),
     path('channel/<str:handle>/videos_by_rating', videos_views.videos_by_rating),
-    re_path('(^(?!(admin|login|logout|social-auth|channel)).*$)',
+    re_path('(^(?!(admin|logout|social-auth|channel)).*$)',
     TemplateView.as_view(template_name="index.html")),
 ]
 
