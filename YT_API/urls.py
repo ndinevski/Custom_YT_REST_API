@@ -37,6 +37,8 @@ urlpatterns = [
     path('channel/<str:handle>/historical/<int:id>', statistics_views.channel_stats_id, name='channel statistics id'),
     path('channel/<str:handle>/videos/top10', include('videos.urls')),
     path('channel/<str:handle>/videos', videos_views.videos_json),
+    path('channel/<str:handle>/videos_by_views', videos_views.videos_by_views),
+    path('channel/<str:handle>/videos_by_rating', videos_views.videos_by_rating),
     re_path('(^(?!(admin|login|logout|social-auth|channel)).*$)',
     TemplateView.as_view(template_name="index.html")),
 ]

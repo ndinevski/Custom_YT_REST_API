@@ -20,3 +20,11 @@ def index(request, handle, format=None):
 @api_view(['GET'])
 def videos_json(request, handle, format=None):
     return Response({'videos_by_views': get_videos_by_views(handle), 'videos_by_rating': get_videos_by_rating(handle)})
+
+@api_view(['GET'])
+def videos_by_views(request, handle, format=None):
+    return Response(get_videos_by_views(handle))
+
+@api_view(['GET'])
+def videos_by_rating(request, handle, format=None):
+    return Response(get_videos_by_rating(handle))

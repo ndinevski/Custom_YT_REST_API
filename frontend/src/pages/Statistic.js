@@ -12,7 +12,6 @@ const Statistic = () => {
         async function getStatistic(){
             let response =  await fetch('http://127.0.0.1:8000/channel/UCX6OQ3DkcsbYNE6H8uQQuVA/historical/' + id)
             let data = await response.json()
-            console.log(data)
             setStatistic(data)
         }
         getStatistic()

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import NavBar from '../components/NavBar'
+import App from '../App.js'
 
 const Statistics = () => {
     let [statistics, setStatistics] = useState([])
@@ -29,14 +30,19 @@ const Statistics = () => {
         setData(getStatistics());
     }
 
+    let setChannelName = () => {
+        App.channel_name = statistics[0]?.channel_name
+    }
+
     return (
     <div className='stats'>
+        {setChannelName()}
         <NavBar parentToChild={<h2 className="stats-title">&#x1F4C8; Historical Statistics for {statistics[0]?.channel_name} <span className="stats-count">{statistics.length}</span></h2>}/>
         
         <div className="stats-list">
             {statistics.map((statistic, index) => (
                 <div className='stats-list-item' key={index}>
-                    <h4 className='stats-link'><Link to={'/statistics/'+statistic.id}><u>{statistic.date_and_time}</u></Link></h4>
+                    <h4 className='stat-link'><Link to={'/statistics/'+statistic.id}><u>{statistic.date_and_time}</u></Link></h4>
                     <h4>Subscribers: {statistic.subscriber_count}</h4>
                     <h4>Views: {statistic.view_count}</h4>
                     <h4>Videos: {statistic.video_count}</h4>
