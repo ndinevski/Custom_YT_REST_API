@@ -8,6 +8,13 @@ __pycache__
 db.sqlite3
 settings.py
 
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
 # Installer logs 
 pip-log.txt 
 pip-delete-this-directory.txt 
