@@ -44,7 +44,7 @@ How to setup project:<br />
 
 Database Sketch:
  ```
- ![DBSketch](/txt_files/dbsketch.png)
+ ![DBSketch](txt_files/dbsketch.png)
  ```
 
 Technologies used:
