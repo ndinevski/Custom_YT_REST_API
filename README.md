@@ -43,9 +43,7 @@ How to setup project:<br />
     ```
 
 Database Sketch:
- ```
  ![dbsketch](https://github.com/ndinevski/Custom_YT_REST_API/assets/61565298/02bdef4b-f012-4cb7-9c0d-a747c08c5c44)
- ```
 
 Technologies used:
  - Python Django
