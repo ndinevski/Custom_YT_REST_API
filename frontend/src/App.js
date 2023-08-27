@@ -13,8 +13,6 @@ import Login from './pages/Login'
 import Search from './pages/Search';
 
 function App() {
-  let channelName = ''
-  let channelId = ''
   // let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
   return (

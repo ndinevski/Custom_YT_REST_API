@@ -6,19 +6,22 @@ import { ReactComponent as ArrowLeft}  from '../assets/arrow-left.svg'
 const Statistic = () => {
     const { id } = useParams();
     let [statistic, setStatistic] = useState(null)
-    let [data, setData] = useState('');
+    let [variables, setVariables] = useState([]);
 
     useEffect(() => {
         async function getStatistic(){
-            let response =  await fetch('http://127.0.0.1:8000/channel/UCX6OQ3DkcsbYNE6H8uQQuVA/historical/' + id)
+            getVariables()
+            let response =  await fetch('http://127.0.0.1:8000/channel/'+ variables.YOUTUBE_CHANNEL_ID +'/historical/' + id)
             let data = await response.json()
             setStatistic(data)
         }
         getStatistic()
+        getVariables()
     }, [id])
 
     let deleteStatistic = async () =>{
-        fetch('http://127.0.0.1:8000/channel/UCX6OQ3DkcsbYNE6H8uQQuVA/historical/' + id, {
+        getVariables()
+        fetch('http://127.0.0.1:8000/channel/'+ variables.YOUTUBE_CHANNEL_ID +'/historical/' + id, {
             method: 'DELETE',
             'headers': {
                 'Content-Type': 'application/json'
@@ -26,8 +29,10 @@ const Statistic = () => {
         })
     }
 
-    let parentToChild = () => {
-        setData();
+    let getVariables = async () => {
+        let response = await fetch('http://127.0.0.1:8000/api/variables')
+        let data = await response.json()
+        setVariables(data)
     }
 
     return (

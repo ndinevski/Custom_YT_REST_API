@@ -8,13 +8,6 @@ __pycache__
 db.sqlite3
 settings.py
 
-### Django ###
-*.log
-*.pot
-*.pyc
-__pycache__/
-local_settings.py
-
 # Installer logs 
 pip-log.txt 
 pip-delete-this-directory.txt 
@@ -41,3 +34,7 @@ coverage.xml
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# Text files and picture
+errors.txt
+dbsketch.png

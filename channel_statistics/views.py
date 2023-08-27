@@ -49,3 +49,13 @@ def channel_stats_id(request,handle, id, format=None):
     elif request.method == 'DELETE':
         statistic.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 
+
+# GET PARAMETERS FOR FRONTEND
+@api_view(['GET'])
+def variables(request, format=None):
+    data = {
+        'YOUTUBE_CHANNEL_ID': settings.YOUTUBE_CHANNEL_ID,
+        'YOUTUBE_CHANNEL_NAME': settings.YOUTUBE_CHANNEL_NAME,
+        'USER': settings.USER,
+    }
+    return Response(data, status=status.HTTP_200_OK)

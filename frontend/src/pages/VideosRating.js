@@ -1,21 +1,29 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import App from '../App.js'
 import NavBar from '../components/NavBar.js'
 
 const VideosRating = () => {
     let [videos_by_rating, setVideosRating] = useState([])
+    let [variables, setVariables] = useState([]);
     let image = ""
     let videoUrl = ""
 
     useEffect(() => {
         getVideosRating()
+        getVariables()
     }, [])
 
     let getVideosRating = async () => {
+        getVariables()
         let response = await fetch('http://127.0.0.1:8000/channel/UCX6OQ3DkcsbYNE6H8uQQuVA/videos_by_rating')
         let data = await response.json()
         setVideosRating(data)
+    }
+
+    let getVariables = async () => {
+        let response = await fetch('http://127.0.0.1:8000/api/variables')
+        let data = await response.json()
+        setVariables(data)
     }
 
     let setThumbnail = (thumbnail) => {
@@ -28,7 +36,7 @@ const VideosRating = () => {
 
     return (
         <div>
-            <NavBar parentToChild={<h2 className="stats-title">&#x1F4C8; Top 10 Videos for {App.channel_name}</h2>}/>
+            <NavBar parentToChild={<h2 className="stats-title">&#x1F4C8; Top 10 Videos for {videos_by_rating[0]?.channel_name}</h2>}/>
             
             <h1 class="choicevideo"><Link  to='/videos/views' className='notselectedvideo'>MOST VIEWED</Link> <span className='selectedvideo'>BEST RATED</span></h1>
             <div>
@@ -57,12 +65,9 @@ const VideosRating = () => {
                                 </div>
                             </div>
                         ))}
-                        
-                        
                     </div>
                 </div>
             </div>
-
         </div> 
     )
 }

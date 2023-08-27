@@ -30,6 +30,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('search-backend', login_views.search, name='home'),
     path('social-auth/', include('social_django.urls', namespace='social')),
+    path('api/variables', statistics_views.variables),
     path('channel/<str:handle>', statistics_views.current_channel_stats, name='current channel statistics'),
     path('channel/<str:handle>/historical', statistics_views.channel_stats),
     path('channel/<str:handle>/historical/update', statistics_views.channel_stats_update),
