@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.http import JsonResponse
 from django.conf import settings
 from .form import handle_form
@@ -11,8 +12,9 @@ import requests
 def login(request):
     return render(request, 'login.html')
 
+@ensure_csrf_cookie
 @login_required
-def home(request):
+def search(request):
     if request.method == 'POST':
         form = handle_form()
         channel_name = request.POST.get('handle')
@@ -31,8 +33,10 @@ def home(request):
         settings.YOUTUBE_CHANNEL_NAME = r.json()['items'][0]['snippet']['channelTitle']
 
         refresh.reload_urlconf()
-
-        return redirect('http://localhost:8000/channel/'+settings.YOUTUBE_CHANNEL_ID)
+        settings.USER = request.user.username
+        
+        return redirect('http://127.0.0.1:8000/statistics')
     
     form = handle_form()
+    # return redirect('http://127.0.0.1:8000/search')
     return render(request, 'home.html', {'form': form})

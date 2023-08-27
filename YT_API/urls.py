@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import re_path, path, include
 from django.contrib.auth import views as auth_views
 from login import views as login_views
 from videos import views as videos_views
@@ -23,19 +23,23 @@ from channel_statistics import views as statistics_views
 from YT_API import views
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.conf import settings
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', login_views.login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('search-backend', login_views.search, name='home'),
     path('social-auth/', include('social_django.urls', namespace='social')),
-    path("", login_views.home, name="home"),
+    path('api/variables', statistics_views.variables),
     path('channel/<str:handle>', statistics_views.current_channel_stats, name='current channel statistics'),
     path('channel/<str:handle>/historical', statistics_views.channel_stats),
     path('channel/<str:handle>/historical/update', statistics_views.channel_stats_update),
     path('channel/<str:handle>/historical/<int:id>', statistics_views.channel_stats_id, name='channel statistics id'),
-    path('channel/<str:handle>/videos/top10', include('videos.urls')),
-    path('channel/<str:handle>/videos', videos_views.videos_json),
+    path('channel/<str:handle>/videos', videos_views.videos),
+    path('channel/<str:handle>/videos_by_views', videos_views.videos_by_views),
+    path('channel/<str:handle>/videos_by_rating', videos_views.videos_by_rating),
+    re_path('(^(?!(admin|logout|social-auth|channel)).*$)',
+    TemplateView.as_view(template_name="index.html")),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

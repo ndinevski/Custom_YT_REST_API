@@ -11,7 +11,8 @@ from . import get_statistics
 # GET CURRENT CHANNEL STATISTICS
 @api_view(['GET'])
 def current_channel_stats(request, handle, format=None):
-    settings.USER = request.user.username
+    if handle.endswith('.json'):
+        handle = handle[:-5]
     data = get_statistics.current_statistics(handle)
     serializer = StatsSerializer(data=data)
     if serializer.is_valid():
@@ -21,9 +22,9 @@ def current_channel_stats(request, handle, format=None):
 # GET ALL REFRESHED CHANNEL STATISTICS, IDs ordered chronologically
 @api_view(['GET'])
 def channel_stats(request, handle, format=None):
-    statistics = Statistics.objects.filter(channel_id=settings.YOUTUBE_CHANNEL_ID).filter(user=settings.USER)
+    statistics = Statistics.objects.filter(channel_id=settings.YOUTUBE_CHANNEL_ID).filter(user=settings.USER).order_by('-date_and_time')
     serializer = StatsSerializer(statistics, many=True)
-    return Response({'statistics': serializer.data})
+    return Response(serializer.data,status=status.HTTP_200_OK)
 
 # UPDATE CHANNEL STATISTICS AND ADD CHANNEL STATISTICS OF THE CURRENT TIME
 @api_view(['POST'])
@@ -48,3 +49,13 @@ def channel_stats_id(request,handle, id, format=None):
     elif request.method == 'DELETE':
         statistic.delete()
         return Response(status=status.HTTP_204_NO_CONTENT) 
+
+# GET PARAMETERS FOR FRONTEND
+@api_view(['GET'])
+def variables(request, format=None):
+    data = {
+        'YOUTUBE_CHANNEL_ID': settings.YOUTUBE_CHANNEL_ID,
+        'YOUTUBE_CHANNEL_NAME': settings.YOUTUBE_CHANNEL_NAME,
+        'USER': settings.USER,
+    }
+    return Response(data, status=status.HTTP_200_OK)
