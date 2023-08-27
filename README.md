@@ -1,4 +1,4 @@
-**# Custom-Youtube-API**
+# Custom-Youtube-API
 
 ## Description
 A custom REST API for extracting and storing historical YouTube analytics data. The goal is to provide this data to the creator(s) for easier understanding of the performance of their and other people's channel(s).
@@ -9,7 +9,7 @@ Project has following functionalities:<br />
 - React Frontend consuming the API (with login, search, statistics and videos page)<br />
 - Data saved in DB<br />
 
-How to setup project:<br />
+## How to setup project:<br />
  1. First clone the repository<br />
     ```
     $ git clone https://github.com/ndinevski/Custom_YT_REST_API
@@ -42,10 +42,10 @@ How to setup project:<br />
     $ python manage.py runserver
     ```
 
-Database Sketch:
+## Database Sketch:
  ![dbsketch](https://github.com/ndinevski/Custom_YT_REST_API/assets/61565298/4c92f5b7-ccc5-47b2-98d0-cde390bae6c3)
 
-Technologies used:
+## Technologies used:
  - Python Django
  - React
  - PostgreSQL
